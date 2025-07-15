@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gemini Pentest Report</title>
+    <title>Pentest Report</title>
     <style>
         * {
             margin: 0;
@@ -371,7 +371,7 @@
         </div>
 
         <div class="output-section">
-            <h2>Gemini Pro Analysis
+            <h2>Groq AI Analysis
                 <span class="status-badge status-ready" id="statusBadge">Ready</span>
             </h2>
             <pre id="output">🚀 Ready to analyze network security vulnerabilities...
@@ -399,31 +399,34 @@ Features:
             }
 
             // Update UI for scanning state
-            output.textContent = "🔄 Initializing security scan...\n\n⚡ Connecting to target: " + ip + "\n📡 Running comprehensive analysis...\n🤖 Gemini AI is processing results...\n\nPlease wait while we analyze the network security...";
+            output.textContent = "🔄 Initializing security scan...\n\n⚡ Connecting to target: " + ip + "\n📡 Running comprehensive analysis...\n🤖 Groq AI is processing results...\n\nPlease wait while we analyze the network security...";
             output.classList.add('loading');
             scanIndicator.classList.add('active');
             statusBadge.textContent = 'Scanning';
             statusBadge.className = 'status-badge status-scanning';
 
             try {
-                const response = await fetch('http://localhost:8834/scans', {
+               const response = await fetch('http://localhost:5678/webhook-test/start', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ target_ip: ip })
+                    body: JSON.stringify({ target_ip: ip }),
+                    mode: "cors"
                 });
 
                 if (!response.ok) {
                     throw new Error('Failed to get a response from server');
                 }
 
-                const data = await response.json();
+                const analysisText = await response.text();  // Receive plain text from backend
 
                 // Display results
-                output.textContent = "🎯 SCAN COMPLETE - " + new Date().toLocaleString() + "\n" +
+                output.textContent =
+                    "🎯 SCAN COMPLETE - " + new Date().toLocaleString() + "\n" +
                     "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
-                    (data.analysis || "No analysis received.");
+                    (analysisText || "No analysis received.");
+
 
             } catch (err) {
                 output.textContent = "❌ SCAN ERROR\n" +
