@@ -1,10 +1,7 @@
 # Automated Network Pentesting Workflow with n8n + Nmap + Groq AI
 
 A streamlined workflow to automate network vulnerability scanning using **Nmap**, analyze the output using **Groq LLM**, and deliver results to a simple web UI via **n8n**.
-
--- 
-
-# Video Demonstration Drive Link : https://drive.google.com/drive/u/2/folders/1wwrT0Hwa9fYafuY-vXdnCSpKK95b9Qd-
+Video Demonstration Drive Link : https://drive.google.com/drive/u/2/folders/1wwrT0Hwa9fYafuY-vXdnCSpKK95b9Qd-
 
 ---
 
